@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nossa Playlist - Retrospectiva do Nosso Amor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SVG Definitions para Gradientes -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#a12b9a" />
+        <stop offset="100%" stop-color="#ff7e67" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Elemento de fundo para partículas de corações flutuantes -->
+  <div id="hearts-container"></div>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Overlay para transições -->
+  <div class="giant-hearts-overlay" id="giant-hearts-overlay">
+  </div>
+
+  <!-- ==========================================================================
+     HERO INICIAL (BEM-VINDO)
+     ========================================================================== -->
+  <section class="hero-viewport" id="hero-viewport">
+    <div class="welcome-card">
+      <div class="heart-photo-wrapper">
+        <div class="heart-photo-art">
+          <img src="WhatsApp%20Image%202026-06-12%20at%2011.20.52.jpeg" alt="Foto de Nós Dois" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+      </div>
+      <h1 class="welcome-title">Nossa Playlist</h1>
+      <p class="welcome-subtitle">A retrospectiva especial dos nossos momentos juntos.</p>
+      <button class="spotify-play-btn" id="btn-start-experience">
+        <!-- Ícone SVG Play -->
+        <svg class="svg-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Começar Retrospectiva
+      </button>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     SEÇÃO 1: STORIES CONTAINER (TOPO DO SITE - 100DVH)
+     ========================================================================== -->
+  <section class="stories-viewport" id="stories-viewport" style="display: none;">
+    
+    <!-- Barras de Progresso dos Stories no topo (apenas 3 slides de stories: Polaroids, História, Stats) -->
+    <div class="stories-progress" id="stories-progress">
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <!-- Zonas de toque laterais exclusivas para os stories -->
+    <div class="touch-zones active" id="touch-zones">
+      <div class="zone-left" id="zone-prev"></div>
+      <div class="zone-right" id="zone-next"></div>
+    </div>
+
+    <!-- Slides Internos dos Stories -->
+    <div class="stories-slides">
+      
+      <!-- STORY 1: Galeria Flutuante (Polaroids) -->
+      <div class="story-slide active" id="story-polaroids">
+        <div class="story-content polaroids-container">
+          <span class="slide-tag">#Nossos Retratos</span>
+          <div class="polaroid-wrapper">
+            <div class="polaroid-card p-left">
+              <div class="polaroid-img">
+                <img src="WhatsApp%20Image%202026-06-12%20at%2011.23.52.jpeg" alt="Lembrança 1" style="width:100%; height:100%; object-fit:cover;">
+              </div>
+            </div>
+            <div class="polaroid-card p-right">
+              <div class="polaroid-img">
+                <img src="WhatsApp%20Image%202026-06-12%20at%2011.24.54.jpeg" alt="Lembrança 2" style="width:100%; height:100%; object-fit:cover;">
+              </div>
+            </div>
+            <div class="polaroid-card p-center">
+              <div class="polaroid-img">
+                <img src="WhatsApp%20Image%202026-06-12%20at%2011.25.29.jpeg" alt="Lembrança 3" style="width:100%; height:100%; object-fit:cover;">
+              </div>
+            </div>
+          </div>
+          <p class="polaroid-caption delay-5">Momentos que ficaram gravados para sempre.</p>
+        </div>
+      </div>
+
+      <!-- STORY 2: Nossa História (Lyrics style) -->
+      <div class="story-slide" id="story-history">
+        <div class="story-content lyrics-container">
+          <span class="slide-tag">#Como Tudo Começou</span>
+          <div class="lyrics-scroll" style="text-align: left; padding: 0;">
+            <p class="lyric-line delay-1">Tudo começou no dia 11 de julho, às 22:20...</p>
+            <p class="lyric-line delay-2">E a nossa sintonia foi tão forte que parecia que já nos conhecíamos de outras vidas.</p>
+            <p class="lyric-line delay-3">O seu sorriso, logo de cara, já tinha ganhado o meu coração por inteiro.</p>
+            <p class="lyric-line delay-4">Meu mundo inteiro passou a ter a sua cor.</p>
+            <p class="lyric-line highlight delay-5">Você virou minha faixa favorita.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- STORY 3: Estatísticas do Casal (Wrapped Stats) -->
+      <div class="story-slide" id="story-stats">
+        <div class="story-content stats-container">
+          <span class="slide-tag">#Nossa Retrospectiva</span>
+          <h2 class="stats-title">Nossa retrospectiva de amor</h2>
+          
+          <div class="main-stat-card">
+            <span class="stat-label">Minutos vividos juntos</span>
+            <span class="stat-value counter" data-target="483840">0</span>
+            <span class="stat-sub">...e contando a cada batimento!</span>
+          </div>
+
+          <div class="stats-grid">
+            <div class="mini-stat-card">
+              <span class="mini-label">Gênero Favorito</span>
+              <span class="mini-value">Rir até a barriga doer</span>
+            </div>
+            <div class="mini-stat-card">
+              <span class="mini-label">Afinidade</span>
+              <span class="mini-value">Match de 100%</span>
+            </div>
+          </div>
+          
+          <!-- Dica visual de rolagem para o usuário final -->
+          <div class="scroll-down-hint">
+            <span class="hint-text">Deslize para baixo para ver mais</span>
+            <svg class="svg-arrow-down animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     SEÇÃO 2: GALERIA DE FOTOS (CARROSSEL DESLIZANTE COM SETAS E INDICADORES)
+     ========================================================================== -->
+  <section class="scroll-section" id="gallery-section">
+    <div class="section-container">
+      <span class="slide-tag">#Playlists Favoritas</span>
+      <h2 class="section-title">Nossos Álbuns Mais Tocados</h2>
+      
+      <!-- Carrossel de Deslizar Horizontal Avançado -->
+      <div class="single-block-carousel">
+        
+        <div class="carousel-content" id="single-carousel-content">
+          <div class="carousel-img-placeholder" id="carousel-img-box" style="background: transparent;">
+            <img src="WhatsApp%20Image%202026-06-12%20at%2011.23.52.jpeg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+          </div>
+        </div>
+        
+        <!-- Controles Integrados -->
+        <div class="carousel-controls">
+          <button class="carousel-arrow prev" id="carousel-prev-btn" aria-label="Slide anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <div class="carousel-dots" id="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          
+          <button class="carousel-arrow next" id="carousel-next-btn" aria-label="Próximo slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="heart-divider">
+    <div class="heart-divider-line"></div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-neon)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+    <div class="heart-divider-line"></div>
+  </div>
+
+  <!-- ==========================================================================
+     SEÇÃO 3: PLAYLIST (ROLÁVEL VERTICALMENTE)
+     ========================================================================== -->
+  <section class="scroll-section" id="playlist-section">
+    <div class="section-container">
+      <span class="slide-tag">#Top Momentos</span>
+      <h2 class="section-title">Playlist: Melhores do Ano</h2>
+      
+      <div class="tracks-list">
+        <div class="track-row">
+          <span class="track-num">1</span>
+          <div class="track-details">
+            <span class="track-name">Muitos lanches juntos</span>
+            <span class="track-artist">Nós Dois</span>
+          </div>
+          <span class="track-duration">03:14</span>
+        </div>
+        <div class="track-row">
+          <span class="track-num">2</span>
+          <div class="track-details">
+            <span class="track-name">Sua mãe te enchendo o saco e eu apoiando</span>
+            <span class="track-artist">Nós Dois</span>
+          </div>
+          <span class="track-duration">04:20</span>
+        </div>
+        <div class="track-row" aria-label="Faixa 3: Nossa viagem em Ibitipoca">
+          <span class="track-num">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" style="width:14px;color:var(--pink-neon);"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          </span>
+          <div class="track-details">
+            <span class="track-name" style="color:var(--pink-neon);">Nossa viagem em Ibitipoca</span>
+            <span class="track-artist">Nós Dois</span>
+          </div>
+          <span class="track-duration">05:20</span>
+        </div>
+        <div class="track-row">
+          <span class="track-num">4</span>
+          <div class="track-details">
+            <span class="track-name">As conversas infinitas na madrugada</span>
+            <span class="track-artist">Nós Dois</span>
+          </div>
+          <span class="track-duration">02:40</span>
+        </div>
+        <div class="track-row">
+          <span class="track-num">5</span>
+          <div class="track-details">
+            <span class="track-name">O nosso futuro que começa agora</span>
+            <span class="track-artist">Amor da Minha Vida</span>
+          </div>
+          <span class="track-duration">99:99</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="heart-divider">
+    <div class="heart-divider-line"></div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--pink-neon)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+    <div class="heart-divider-line"></div>
+  </div>
+
+  <!-- ==========================================================================
+     SEÇÃO 4: PEDIDO FINAL (ROLÁVEL VERTICALMENTE)
+     ========================================================================== -->
+  <section class="scroll-section" id="proposal-section">
+    <div class="section-container proposal-wrapper">
+      <div class="proposal-box">
+        <div class="proposal-album-cover">
+          <svg class="svg-neon-heart pulse-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </div>
+        <h2 class="proposal-title">Quer namorar comigo?</h2>
+        <p class="proposal-subtitle">Sua resposta ficará gravada no meu coração para sempre.</p>
+        
+        <div class="proposal-buttons">
+          <button class="proposal-btn btn-yes" id="btn-yes">SIM!</button>
+          <button class="proposal-btn btn-no" id="btn-no">Não</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+     PLAYER DE MÚSICA FIXO NO RODAPÉ ESTILO SPOTIFY
+     ========================================================================== -->
+  <footer class="spotify-footer-player" id="footer-player">
+    <div class="player-left">
+      <div class="player-album-thumb">
+        <img src="WhatsApp%20Image%202026-06-12%20at%2011.20.52.jpeg" alt="Album Thumbnail" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
+      </div>
+      <div class="player-song-info">
+        <span class="player-song-title">Melodia do Amor</span>
+        <span class="player-song-artist">Sintetizador Nátivo</span>
+      </div>
+    </div>
+    <div class="player-right">
+      <button class="player-control-btn" id="btn-play-pause">
+        <svg class="svg-player-control" id="svg-play-pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+      </button>
+      <div class="player-heart-btn">
+        <svg class="svg-player-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+     CARTA DE AMOR OVERLAY
+     ========================================================================== -->
+
+
+  <div class="letter-overlay" id="letter-overlay">
+    <div class="letter-card">
+      <button class="close-letter-btn" id="btn-close-letter">&times;</button>
+      <div class="letter-content">
+        <h2 class="letter-greeting">Para o amor da minha vida, ❤️</h2>
+        <p>Desde o nosso primeiro "oi" no dia 11 de julho, tudo mudou para muito melhor. O seu sorriso é a coisa mais linda que já vi, e só de lembrar da nossa caminhada de horas pela Janela do Céu em Ibitipoca (junto com a minha mãe!), eu sei que qualquer aventura vale a pena se for ao seu lado.</p>
+        <p>Ah, e não esqueça que logo logo é hora de ir para a escolinha com o titio e a titia! 😂</p>
+        <p>Obrigado por ser minha parceira, minha melhor amiga e meu amor de todos os dias. Quero compor o resto das nossas vidas juntos.</p>
+        <p class="letter-signature">Com todo o meu amor para sempre.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
