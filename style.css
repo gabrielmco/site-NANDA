@@ -368,9 +368,9 @@ body.has-started .stories-progress {
 .welcome-title {
   font-size: clamp(2.2rem, 8vw, 3.5rem);
   font-weight: 900;
-  line-height: 1.25;
+  line-height: 1.35;
   margin-bottom: 12px;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   background: linear-gradient(to right, #ffffff 40%, var(--pink-neon) 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -478,6 +478,8 @@ body.has-started .stories-progress {
   display: flex;
   flex-direction: column;
   gap: 22px;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .lyric-line {
@@ -485,6 +487,7 @@ body.has-started .stories-progress {
   padding: 0;
   font-weight: 700;
   line-height: 1.45;
+  text-align: left;
   color: rgba(255, 255, 255, 0.25);
   transition: color 0.5s ease;
   transform: translateY(20px);
@@ -1159,7 +1162,7 @@ body.has-started .spotify-footer-player {
   padding: 35px 24px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.5);
   position: relative;
-  margin: auto 0;
+  margin: 40px auto;
   transform: scale(0.8) translateY(60px) rotate(-3deg);
   opacity: 0;
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
