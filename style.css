@@ -1277,3 +1277,107 @@ body.has-started .spotify-footer-player {
   opacity: 0.6;
   transform: scale(1);
 }
+
+/* ==========================================================================
+   10. MEDIA QUERIES (RESPONSIVIDADE DESKTOP E TELAS GRANDES)
+   ========================================================================== */
+@media (min-width: 768px) {
+  /* Hero Viewport - Side by Side */
+  .welcome-card {
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+      "img title"
+      "img subtitle"
+      "img btn";
+    align-items: center;
+    text-align: left;
+    column-gap: 60px;
+  }
+  .heart-photo-wrapper {
+    grid-area: img;
+    width: 380px;
+    height: 380px;
+    margin: 0;
+  }
+  .welcome-title {
+    grid-area: title;
+    align-self: end;
+    margin-bottom: 0;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+  }
+  .welcome-subtitle {
+    grid-area: subtitle;
+    align-self: start;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    max-width: none;
+    font-size: 16px;
+  }
+  .spotify-play-btn {
+    grid-area: btn;
+    align-self: start;
+    justify-self: start;
+    padding: 18px 40px;
+    font-size: 16px;
+  }
+
+  /* Stories Viewport */
+  .story-content {
+    max-width: 700px;
+  }
+  
+  .lyric-line {
+    font-size: 2rem; /* Lyrics maiores no desktop */
+  }
+
+  /* Zonas de Toque Visíveis no Hover para PC */
+  .touch-zones .zone-left, .touch-zones .zone-right {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+  }
+  .touch-zones .zone-left { justify-content: flex-start; padding-left: 40px; }
+  .touch-zones .zone-right { justify-content: flex-end; padding-right: 40px; }
+  
+  .touch-zones .zone-left:hover { background: linear-gradient(to right, rgba(255,255,255,0.03), transparent); }
+  .touch-zones .zone-right:hover { background: linear-gradient(to left, rgba(255,255,255,0.03), transparent); }
+  
+  .touch-zones .zone-left::before { content: "◀"; color: var(--pink-neon); font-size: 3rem; opacity: 0; transition: opacity 0.3s; filter: drop-shadow(0 0 10px var(--pink-glow)); }
+  .touch-zones .zone-left:hover::before { opacity: 0.6; }
+  
+  .touch-zones .zone-right::after { content: "▶"; color: var(--pink-neon); font-size: 3rem; opacity: 0; transition: opacity 0.3s; filter: drop-shadow(0 0 10px var(--pink-glow)); }
+  .touch-zones .zone-right:hover::after { opacity: 0.6; }
+
+  /* Seções de Scroll (Galeria, Playlist, Proposal) */
+  .section-container {
+    max-width: 800px;
+  }
+  .proposal-box {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Player de Música do Spotify */
+  .spotify-footer-player {
+    max-width: 600px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    bottom: -100px;
+  }
+  body.has-started .spotify-footer-player {
+    bottom: 24px;
+  }
+
+  /* Carta de Amor (Modal) */
+  .letter-card {
+    max-width: 600px;
+    padding: 50px 45px;
+    font-size: 16px;
+  }
+}
